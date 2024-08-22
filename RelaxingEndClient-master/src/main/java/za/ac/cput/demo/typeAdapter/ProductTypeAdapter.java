@@ -24,8 +24,6 @@ public class ProductTypeAdapter implements JsonSerializer<Product>, JsonDeserial
                .setPrice(price)
                .setQuantity(quantity)
                .build();
-        // Set other fields
-        //booking.setOtherField(jsonObject.get("otherField").getAsString());
 
         return product;
     }
@@ -33,12 +31,10 @@ public class ProductTypeAdapter implements JsonSerializer<Product>, JsonDeserial
     @Override
     public JsonElement serialize(Product product, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject jsonObject = new JsonObject();
-        // Serialize fields excluding bookingId if necessary
-        jsonObject.addProperty("productId", product.getProductId()); // Or exclude if it's private
 
-        // Add other fields as needed
+        jsonObject.addProperty("productId", product.getProductId()); // Or exclude if it's privat
         jsonObject.addProperty("price", String.valueOf(product.getPrice()));
-        jsonObject.addProperty("productDescription", String.valueOf(product.getProductDescription()));
+        jsonObject.addProperty("productDescription", product.getProductDescription());
         jsonObject.addProperty("productName", String.valueOf(product.getProductName()));
         jsonObject.addProperty("quantity", String.valueOf(product.getQuantity()));
 
